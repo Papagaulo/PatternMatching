@@ -1,43 +1,44 @@
-﻿namespace PatternMatching
+﻿namespace PatternMatching;
+
+public abstract class Shape
 {
-    public abstract class Shape
+    public abstract double Area { get; }
+}
+public interface ISquare
+{
+    double Height { get; set; }
+    double Width { get; set; }
+}
+
+public class Rectangle : Shape, ISquare
+{
+    Rectangle()
     {
-        public abstract double Area { get; }
+
     }
-    public interface ISquare
+    public Rectangle(double height, double width)
     {
-        double Height { get; set; }
-        double Width { get; set; }
-    }
+        Height = height;
+        Width = width;
 
-    public class Rectangle : Shape, ISquare
+    }
+    
+    public override double Area => Height * Width;
+
+    public double Height { get; set; }
+    public double Width { get; set; }
+}
+
+public class Circle : Shape
+{
+    static double pi = Math.PI;
+    Circle() { }
+    public Circle(double diameter)
     {
-        Rectangle()
-        {
-
-        }
-        public Rectangle(double height, double width)
-        {
-            Height = height;
-            Width = width;
-
-        }
-        
-        public override double Area => Height * Width;
-
-        public double Height { get; set; }
-        public double Width { get; set; }
+        Diameter = diameter;
     }
+    public double Diameter { get; set; }
+    public double Radius { get => Diameter / 2; }
 
-    internal class Circle : Shape
-    {
-        static double pi = Math.PI;
-        Circle(double diameter)
-        {
-            Diameter = diameter;
-        }
-        public double Diameter { get; set; }
-
-        public override double Area => throw new NotImplementedException();
-    }
+    public override double Area => Math.Pow(Diameter,2);
 }
