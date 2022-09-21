@@ -12,7 +12,11 @@
 
     public class Rectangle : Shape, ISquare
     {
-        Rectangle(double height, double width)
+        Rectangle()
+        {
+
+        }
+        public Rectangle(double height, double width)
         {
             Height = height;
             Width = width;
@@ -23,5 +27,17 @@
 
         public double Height { get; set; }
         public double Width { get; set; }
+    }
+
+    internal class Circle : Shape
+    {
+        static double pi = Math.PI;
+        Circle(double diameter)
+        {
+            Diameter = diameter;
+        }
+        public double Diameter { get; set; }
+
+        public override double Area => throw new NotImplementedException();
     }
 }
